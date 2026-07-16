@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeelZelf+ | Health by Design</title>
+    <!-- Tailwind CSS voor de moderne vormgeving -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Jouw specifieke hex-palet geïntegreerd
+                        brand: {
+                            darkest: '#1e221f',   // Bijna zwart, voor leestekst
+                            dark: '#1c352d',      // Zeer donkergroen
+                            primary: '#376153',   // Hoofdgroen
+                            secondary: '#618b7d', // Zachtgroen
+                            light: '#acc0b7',     // Licht accentgroen
+                            lighter: '#d2dbd4',   // Zeer lichte achtergrond accenten
+                            bg: '#f7f5f0',        // Warme off-white achtergrond
+                            accent: '#d97453',    // Terracotta oranje (voor knoppen/aandacht)
+                            deep: '#2a4b40',      // Diepgroen
+                            brown: '#261611'      // Donkerbruin
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-darkest min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Header / Branding -->
+    <div class="max-w-3xl w-full mb-8 text-center mt-8">
+        <h1 class="text-5xl font-bold text-brand-primary mb-4 tracking-tight">SpeelZelf+</h1>
+        <p class="text-brand-secondary text-lg font-medium">Maak spellen in de kast klaar voor zelfstandig gebruik.</p>
+    </div>
+
+    <!-- Interactieve Beslisboom Kaart -->
+    <div id="app-card" class="bg-white max-w-3xl w-full rounded-3xl shadow-xl p-8 md:p-12 fade-in mb-12 border-t-4 border-brand-accent">
+        <!-- Content wordt hier via JavaScript ingeladen -->
+    </div>
+
+    <script>
+        // --- DE DATABASE MET JOUW ONTWERPPRINCIPES ---
+        const treeData = {
+            start: {
+                type: 'question',
+                tag: 'Stap 1: Herkenbaarheid & Eenvoud',
+                title: 'Is het spel dat je wilt aanpassen al bekend bij de bewoners en zijn de regels simpel?',
+                image: '', 
+                options: [
+                    { label: 'Ja, het is een bekend en simpel concept', next: 'q_opstart' },
+                    { label: 'Nee, het is onbekend of erg ingewikkeld', next: 'tip_herkenbaar' }
+                ]
+            },
+            tip_herkenbaar: {
+                type: 'tip',
+                tag: 'Principe: Herkenbaarheid & Eenvoud',
+                title: 'Kies een herkenbare basis',
+                description: 'Bewoners spelen liever spellen die ze al kennen. Bouw voort op klassiekers en houd de spelregels simpel met voorspelbare acties en een beperkt aantal stappen.',
+                exampleText: 'In plaats van een volledig nieuw VR-spel te verzinnen, is Japans Biljart als basis gekozen. Dit is een spel dat ze vroeger al speelden op campings of in de kroeg. De regels zijn simpel: bal rollen, punten scoren.',
+                exampleImage: 'japans_biljart_origineel.png', // VERVANG DIT DOOR JOUW FOTO NAAM
+                options: [
+                    { label: 'Kies een ander spel en ga door', next: 'q_opstart' }
+                ]
+            },
+            q_opstart: {
+                type: 'question',
+                tag: 'Stap 2: Zelfstandig Opstarten',
+                title: 'Nodigt het spel de bewoner uit om zelf te beginnen, zonder dat jij het hoeft klaar te zetten?',
+                image: '',
+                options: [
+                    { label: 'Ja, ze kunnen direct beginnen', next: 'q_fysiek' },
+                    { label: 'Nee, ik moet ze vaak aanmoedigen en helpen met opzetten', next: 'tip_opstart' }
+                ]
+            },
+            tip_opstart: {
+                type: 'tip',
+                tag: 'Principe: Zelfstandig opstartbaar',
+                title: 'Creëer een zichtbare trigger',
+                description: 'Zorg voor een vaste opstelling en duidelijke startaanwijzingen. Zodra motivatie, bekwaamheid en een trigger (zoals een startknop of uitnodigende opstelling) samenkomen, ontstaat de actie vanzelf.',
+                exampleText: 'Japans Biljart+ heeft een "Attract Mode" met knipperende LED-verlichting. Het spel staat standaard op een vaste, toegankelijke tafel in de ruimte met een duidelijk instructiebord. De eerste bal ligt al zichtbaar klaar om gepakt te worden.',
+                exampleImage: 'ledstrips.png', // VERVANG DIT DOOR JOUW FOTO NAAM
+                options: [
+                    { label: 'Volgende check', next: 'q_fysiek' }
+                ]
+            },
+            q_fysiek: {
+                type: 'question',
+                tag: 'Stap 3: Fysieke Toegankelijkheid',
+                title: 'Lukt het de bewoner om alle spelhandelingen veilig en zittend uit te voeren, zonder ver te hoeven reiken?',
+                image: '',
+                options: [
+                    { label: 'Ja, alles ligt veilig binnen handbereik', next: 'q_cognitief' },
+                    { label: 'Nee, ze moeten ver reiken of opstaan', next: 'tip_fysiek' }
+                ]
+            },
+            tip_fysiek: {
+                type: 'tip',
+                tag: 'Principe: Beperk reikafstanden',
+                title: 'Maak een verlengarm of balretoursysteem',
+                description: 'Ver reiken leidt tot onveilige situaties (zoals valgevaar). Ontwerp spellen rond zittende armbewegingen. Als materiaal te ver weg ligt, stopt de zelfstandige actie.',
+                exampleText: 'Bij Japans Biljart+ is een speciale balretoursysteem (een ballenhark) ontworpen. Hierdoor kunnen bewoners, ook vanuit een rolstoel, veilig de ballen terughalen zonder over de tafel te hoeven leunen.',
+                exampleImage: 'ballenhark.png', // VERVANG DIT DOOR JOUW FOTO NAAM
+                options: [
+                    { label: 'Volgende check', next: 'q_cognitief' }
+                ]
+            },
+            q_cognitief: {
+                type: 'question',
+                tag: 'Stap 4: Cognitieve Belasting',
+                title: 'Kan de bewoner zelf de score bijhouden en aflezen?',
+                image: '',
+                options: [
+                    { label: 'Ja, de score is glashelder', next: 'q_succes' },
+                    { label: 'Nee, ik moet vaak de punten optellen', next: 'tip_cognitief' }
+                ]
+            },
+            tip_cognitief: {
+                type: 'tip',
+                tag: 'Principe: Verminder cognitieve belasting',
+                title: 'Maak de score visueel en automatisch',
+                description: 'Het zien, onthouden en optellen van scores vormt een enorme drempel. Gebruik kleurcodering, visuele scoreborden of eenvoudige puntensystemen om het rekenwerk weg te nemen.',
+                exampleText: 'Voor Japans Biljart+ is een groot spiekbriefje (cheat sheet) ontworpen dat kleuren koppelt aan punten. De scoreverwerking wordt zo een kwestie van kleuren herkennen in plaats van abstract hoofdrekenen.',
+                exampleImage: 'instructieblad.png', // VERVANG DIT DOOR JOUW FOTO NAAM
+                options: [
+                    { label: 'Volgende check', next: 'q_succes' }
+                ]
+            },
+            q_succes: {
+                type: 'question',
+                tag: 'Stap 5: Succes & Interactie',
+                title: 'Kunnen spelers de moeilijkheid aanpassen en is er ruimte voor plezier en interactie?',
+                image: '',
+                options: [
+                    { label: 'Ja, ze vieren samen successen', next: 'success' },
+                    { label: 'Nee, het is vaak te moeilijk of te stil', next: 'tip_succes' }
+                ]
+            },
+            tip_succes: {
+                type: 'tip',
+                tag: 'Principe: Succeservaringen & Competitie',
+                title: 'Ontwerp voor succes, humor en interactie',
+                description: 'Maak doelvlakken groter of afstanden korter, zodat succes gegarandeerd is. Voeg elementen toe die samenwerking en vriendschappelijke competitie (zoals highscores) stimuleren.',
+                exampleText: 'In Japans Biljart+ is een leaderboard (scorebord) toegevoegd waar bewoners hun naam op kunnen schrijven. Dit creëerde positieve competitie. Spelers moedigden elkaar aan en genoten zichtbaar van elkaars beurten.',
+                exampleImage: 'leaderboard.png', // VERVANG DIT DOOR JOUW FOTO NAAM
+                options: [
+                    { label: 'Rond SpeelZelf+ af', next: 'success' }
+                ]
+            },
+            success: {
+                type: 'success',
+                tag: 'Klaar!',
+                title: 'Dit spel is helemaal klaar voor de woonkamer.',
+                description: 'Je hebt de SpeelZelf+ methode doorlopen. Je kunt dit spel nu met een gerust hart in de woonkamer plaatsen. Je zult zien dat de bewoners zelf de regie pakken!',
+                image: '',
+                options: [
+                    { label: 'Nieuw spel aanpassen', next: 'start' }
+                ]
+            }
+        };
+
+        // --- DE LOGICA (Render engine) ---
+        const appCard = document.getElementById('app-card');
+
+        function renderNode(nodeId) {
+            const node = treeData[nodeId];
+            
+            appCard.innerHTML = '';
+            appCard.classList.remove('fade-in');
+            void appCard.offsetWidth; 
+            appCard.classList.add('fade-in');
+
+            let html = '';
+
+            // 1. Tagline
+            if(node.tag) {
+                html += `<span class="inline-block bg-brand-lighter text-brand-primary font-bold px-4 py-1.5 rounded-full text-xs mb-5 uppercase tracking-widest">${node.tag}</span>`;
+            }
+
+            // 2. Titel
+            html += `<h2 class="text-3xl md:text-4xl font-bold text-brand-darkest mb-5 leading-tight">${node.title}</h2>`;
+
+            // 3. Beschrijving
+            if(node.description) {
+                html += `<p class="text-brand-dark text-lg mb-6 leading-relaxed">${node.description}</p>`;
+            }
+
+            // 4. Afbeelding (Hoofdafbeelding - momenteel leeg gelaten, maar beschikbaar)
+            if(node.image) {
+                html += `<div class="rounded-2xl overflow-hidden mb-8 h-48 md:h-64 bg-brand-lighter border-2 border-brand-light">
+                            <img src="${node.image}" alt="Voorbeeld" class="w-full h-full object-cover">
+                         </div>`;
+            }
+
+            // 5. Speciaal Japans Biljart+ Voorbeeld Kader
+            if(node.exampleText) {
+                html += `
+                <div class="bg-[#f0ece1] p-6 md:p-8 rounded-2xl mb-8 border-l-4 border-brand-accent shadow-sm">
+                    <h3 class="font-bold text-brand-primary text-xl mb-3 flex items-center gap-2">
+                        <span>💡</span> Voorbeeld: Japans Biljart+
+                    </h3>
+                    <p class="text-brand-darkest mb-5 leading-relaxed">${node.exampleText}</p>
+                    
+                    <!-- De placeholder voor jouw specifieke foto -->
+                    <div class="rounded-xl overflow-hidden bg-white border border-brand-light flex items-center justify-center min-h-[200px] relative">
+                        ${node.exampleImage && node.exampleImage !== '' 
+                            ? `<img src="${node.exampleImage}" alt="Japans Biljart+ Voorbeeld" class="w-full h-full object-cover absolute inset-0">
+                               <span class="bg-white/80 p-2 text-sm text-brand-dark relative z-10 rounded">Als je foto '${node.exampleImage}' in dezelfde map staat, verschijnt hij hier!</span>` 
+                            : `<span class="text-brand-secondary text-sm">Geen afbeelding ingesteld</span>`
+                        }
+                    </div>
+                </div>`;
+            }
+
+            // 6. Knoppen / Opties
+            html += `<div class="flex flex-col sm:flex-row gap-4 mt-8">`;
+            node.options.forEach(opt => {
+                const btnClass = opt.style === 'outline' 
+                    ? 'border-2 border-brand-primary text-brand-primary hover:bg-brand-lighter' 
+                    : 'bg-brand-accent text-white hover:bg-[#c26547] shadow-lg shadow-brand-accent/20';
+                
+                html += `<button onclick="renderNode('${opt.next}')" 
+                            class="px-6 py-4 rounded-xl font-bold transition-all duration-200 flex-1 text-center text-lg ${btnClass}">
+                            ${opt.label}
+                         </button>`;
+            });
+            html += `</div>`;
+
+            appCard.innerHTML = html;
+        }
+
+        renderNode('start');
+    </script>
+</body>
+</html>
