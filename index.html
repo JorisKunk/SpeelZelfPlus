@@ -12,16 +12,16 @@
                 extend: {
                     colors: {
                         brand: {
-                            darkest: '#1e221f',   // Bijna zwart, voor leestekst
-                            dark: '#1c352d',      // Zeer donkergroen
-                            primary: '#376153',   // Hoofdgroen
-                            secondary: '#618b7d', // Zachtgroen
-                            light: '#acc0b7',     // Licht accentgroen
-                            lighter: '#d2dbd4',   // Zeer lichte achtergrond
-                            bg: '#f7f5f0',        // Warme off-white achtergrond
-                            accent: '#d97453',    // Terracotta oranje (voor knoppen)
-                            deep: '#2a4b40',      // Diepgroen
-                            brown: '#261611'      // Donkerbruin
+                            darkest: '#1e221f',
+                            dark: '#1c352d',
+                            primary: '#376153',
+                            secondary: '#618b7d',
+                            light: '#acc0b7',
+                            lighter: '#d2dbd4',
+                            bg: '#f7f5f0',
+                            accent: '#d97453',
+                            deep: '#2a4b40',
+                            brown: '#261611'
                         }
                     },
                     fontFamily: {
@@ -31,13 +31,12 @@
             }
         }
     </script>
-    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Soepele animaties voor het wisselen van stappen */
+
         .fade-in {
             animation: fadeIn 0.4s ease-in-out;
         }
@@ -53,7 +52,7 @@
                 transform: translateY(0);
             }
         }
-        /* Custom scrollbar voor het notitieblok */
+
         textarea::-webkit-scrollbar {
             width: 8px;
         }
@@ -74,37 +73,66 @@
         <p class="text-brand-secondary text-lg font-medium">De APK-methode voor zelfstandige beweegspellen in de zorg.</p>
     </div>
 
-    <!-- Hoofd Layout: 2 kolommen (Main app + Notitieblok) -->
+    <!-- Hoofd Layout: 2 kolommen -->
     <div class="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-8 items-start">
 
         <!-- LINKER KOLOM: De Interactieve Beslisboom -->
         <div id="app-card" class="bg-white w-full lg:w-2/3 rounded-3xl shadow-xl p-6 md:p-10 fade-in border-t-4 border-brand-accent relative">
-            <!-- Content wordt hier via de renderNode() functie in JavaScript ingeladen -->
+            <!-- Content wordt hier via Javascript ingeladen -->
         </div>
 
-        <!-- RECHTER KOLOM: Het Kladblok (Blijft altijd staan!) -->
+        <!-- RECHTER KOLOM: Het Kladblok -->
         <div class="w-full lg:w-1/3 bg-white rounded-3xl shadow-md border border-brand-lighter p-6 sticky top-8">
             <div class="flex items-center gap-2 mb-4">
                 <span class="text-2xl">📝</span>
                 <h3 class="font-bold text-brand-primary text-xl">Mijn Kladblok</h3>
             </div>
-            <p class="text-sm text-brand-secondary mb-4">Houd hier je keuzes, materialen en ideeën bij.</p>
-            <textarea id="notesArea" class="w-full h-80 lg:h-96 bg-brand-bg border border-brand-lighter rounded-xl p-4 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-accent resize-none transition-all leading-relaxed" placeholder="Typ hier de naam van je spel en je ideeën..."></textarea>
+            <p class="text-sm text-brand-secondary mb-4">Houd hier je keuzes, materialen en ideeën bij. Bewaart automatisch op dit apparaat.</p>
+            <textarea id="notesArea" class="w-full h-80 lg:h-96 bg-brand-bg border border-brand-lighter rounded-xl p-4 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-accent resize-none transition-all leading-relaxed"></textarea>
         </div>
 
     </div>
 
     <script>
-        // ==========================================
-        // 1. GESCHIEDENIS SYSTEEM (Voor de terug-knop)
-        // ==========================================
-        let historyStack = []; // Hierin slaan we op waar we vandaan kwamen
+        let historyStack = [];
 
-        // ==========================================
-        // 2. DE DATABASE MET JOUW 10 ONTWERPPRINCIPES
-        // ==========================================
+        // Functie om het spel in het notitieblok te updaten vanaf de intro pagina
+        function updateNotepadGameName(gameName) {
+            const textarea = document.getElementById('notesArea');
+            let content = textarea.value;
+            // Vervangt de regel die begint met "Spelnaam:" door de nieuwe invoer
+            content = content.replace(/Spelnaam: .*/, 'Spelnaam: ' + gameName);
+            textarea.value = content;
+            localStorage.setItem('speelzelf_notes', content);
+        }
+
+        // Functie om kladblok te wissen (bijv. voor een nieuwe collega)
+        function clearNotes() {
+            const defaultText = "Mijn SpeelZelf+ Project\n\nSpelnaam: \n\nAanpassingen:\n- \n- \n\nBoodschappenlijst:\n- \n- \n";
+            document.getElementById('notesArea').value = defaultText;
+            localStorage.setItem('speelzelf_notes', defaultText);
+        }
+
         const treeData = {
-            // STAP 1: Herkenbaarheid
+            // --- NIEUWE INTRODUCTIE PAGINA ---
+            intro: {
+                type: 'intro',
+                tag: 'Welkom bij de tool',
+                title: 'Maak beweegspellen speelklaar voor bewoners',
+                description: 'Met de SpeelZelf+ methode loop je in 10 simpele stappen langs de belangrijkste ontwerpprincipes. Het doel? Een bestaand beweegspel zó aanpassen dat bewoners het zelf kunnen starten, spelen en resetten, zonder constante begeleiding.',
+                customHtml: `
+                        <div class="bg-brand-bg p-6 rounded-xl mb-8 border border-brand-lighter shadow-inner">
+                            <label class="block font-bold text-brand-darkest mb-2 text-lg">Welk beweegspel ga je vandaag aanpassen?</label>
+                            <p class="text-sm text-brand-secondary mb-4">Pak het spel er fysiek bij en typ de naam hieronder in. Het verschijnt direct in je Kladblok!</p>
+                            <input type="text" placeholder="Bijv. Sjoelbak, Ringwerpen, Kegelen..." class="w-full p-4 rounded-lg border border-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent text-lg" oninput="updateNotepadGameName(this.value)">
+                        </div>
+                    `,
+                options: [
+                    { label: 'Start de 10-stappen APK', next: 'start' }
+                ]
+            },
+
+            // STAP 1
             start: {
                 type: 'question',
                 tag: 'Stap 1/10: Herkenbaarheid & Eenvoud',
@@ -122,12 +150,12 @@
                 description: 'Kies een spelconcept dat aansluit bij hun verleden. Hebben ze een opfriscursus nodig? Maak dan een simpel, groot instructieblad met stappen en illustraties.',
                 criteria: 'Het voldoet als: Een bewoner het doel van het spel in 1 zin kan benoemen zonder dat jij het uitlegt.',
                 materials: 'Groot A3 papier, dikke stift, lamineerapparaat (te vinden op kantoor).',
-                exampleText: 'Japans Biljart+ is een aanpassing van het spel Japans Biljart, een spel dat bij veel zorgcentra gespeeld wordt. Doordat bewoners het vaker hebben gespeeld snappen ze intuïtief wat ze moeten doen.',
+                exampleText: 'Japans Biljart+ is gebaseerd op een spel dat bij veel zorgcentra gespeeld wordt. Doordat bewoners het vaker hebben gespeeld snappen ze intuïtief wat ze moeten doen.',
                 exampleImage: 'instructieblad.png',
                 options: [{ label: 'Check! Door naar stap 2', next: 'q2' }]
             },
 
-            // STAP 2: Opstarten
+            // STAP 2
             q2: {
                 type: 'question',
                 tag: 'Stap 2/10: Zelfstandig Opstarten',
@@ -145,40 +173,40 @@
                 description: 'Maak een vaste plek voor het spel in de gemeenschappelijke ruimte. Zorg dat het goed toegankelijk is, maar niet in de weg staat van het dagelijkse ritme.',
                 criteria: 'Het voldoet als: Het spel direct speelklaar is of met maximaal 1 lichte handeling klaar te leggen is.',
                 materials: 'Een verhoging of een kleine, stabiele bijzettafel (bijv. van Ikea of Kringloop).',
-                exampleText: 'Japans Biljart+ heeft zijn eigen vaste plek gekregen in de gezamenlijke woonkamer, in plaats van in een afgesloten spellenkast. Het spel kan direct gespeeld worden',
+                exampleText: 'Japans Biljart+ heeft zijn eigen vaste plek gekregen in de gezamenlijke woonkamer, in plaats van in een afgesloten spellenkast. Het spel kan direct gespeeld worden.',
                 options: [{ label: 'Check! Door naar stap 3', next: 'q3' }]
             },
 
-            // STAP 3: Resetten (Reikafstand & Fysiek)
+            // STAP 3
             q3: {
                 type: 'question',
-                tag: 'Stap 3/10: Zelf Resetten (Fysiek)',
+                tag: 'Stap 3/10: Zelf Resetten',
                 title: 'Kunnen de bewoners het spel zélf makkelijk en veilig resetten na een beurt?',
-                description: 'Bij veel spellen zorgt een begeleider dat spelelementen zoals ballen worden verzameld en teruggegeven.',
+                description: 'Bij veel spellen zorgt een begeleider dat spelelementen zoals ballen of ringen worden verzameld en teruggegeven.',
                 options: [
-                    { label: 'Ja, ze kunnen zelf het spel resetten en een nieuwe beurt starten', next: 'q4' },
+                    { label: 'Ja, ze kunnen zelf een nieuwe beurt starten', next: 'q4' },
                     { label: 'Nee, ze kunnen er niet bij of moeten ver reiken', next: 'tip3' }
                 ]
             },
             tip3: {
                 type: 'tip',
                 tag: 'Principe 3: Fysieke Toegankelijkheid',
-                title: 'Breng het spel naar de speler (Zittend Ontwerp)',
-                description: 'Zorg dat bewoners niet buiten hun maximale reikafstand (verder dan een arm strekken) hoeven te bewegen. Ver reiken vanuit een (rol)stoel leidt tot valgevaar. Leg spellen op een verhoogde tafel en maak hulpmiddelen om dingen terug te halen.',
+                title: 'Ontwerp een hulpmiddel om te resetten',
+                description: 'Zorg dat bewoners binnen hun fysieke mogelijkheden het spel zelfstandig en makkelijk kunnen resetten, zonder dat de actie stilvalt en zonder dat ze moeten opstaan.',
                 criteria: 'Het voldoet als: Een rolstoelgebruiker het hele spel (inclusief opruimen) kan spelen zonder los te komen van de rugleuning.',
-                materials: 'Je kan bijvoorbeeld gebruik maken van PVC buizen, karton, hout en lichte materialen die te koop zijn bij de bouwmarkt',
+                materials: 'Maak gebruik van PVC buizen, karton, hout en lichte materialen (bouwmarkt).',
                 exampleText: 'Bij Japans Biljart+ is een ballenhark gemaakt van een lichte elektrabuis en een fietshandvat. Hiermee kunnen bewoners gemakkelijk en veilig de ballen vanuit hun stoel naar zich toe halen.',
                 exampleImage: 'ballenhark.png',
                 exampleImage2: 'ballenhark_materialen.png',
                 options: [{ label: 'Check! Door naar stap 4', next: 'q4' }]
             },
 
-            // STAP 4: Score (Cognitief)
+            // STAP 4
             q4: {
                 type: 'question',
                 tag: 'Stap 4/10: Cognitieve Belasting',
                 title: 'Kunnen de bewoners zelf de getallen goed zien en de score optellen?',
-                description: 'Kleine cijfers en hoofdrekenen vormen een sommige bewoners een drempel, waardoor begeleiders vaak de score bijhouden.',
+                description: 'Kleine cijfers en hoofdrekenen vormen voor sommige bewoners een drempel, waardoor begeleiders vaak de score bijhouden.',
                 options: [
                     { label: 'Ja, de score is makkelijk te zien en tellen', next: 'q5' },
                     { label: 'Nee, de cijfers zijn klein of rekenen is te moeilijk', next: 'tip4' }
@@ -197,7 +225,7 @@
                 options: [{ label: 'Check! Door naar stap 5', next: 'q5' }]
             },
 
-            // STAP 5: Succeservaring
+            // STAP 5
             q5: {
                 type: 'question',
                 tag: 'Stap 5/10: Succes & Moeilijkheid',
@@ -219,11 +247,11 @@
                 options: [{ label: 'Check! Door naar stap 6', next: 'q6' }]
             },
 
-            // STAP 6: Competitie
+            // STAP 6
             q6: {
                 type: 'question',
                 tag: 'Stap 6/10: Competitie',
-                title: 'Kunnen bewoners op een leuke manier met elkaar de strijd aan gaan en punten bij te houden?',
+                title: 'Kunnen bewoners op een leuke manier met elkaar de strijd aan gaan en punten bijhouden?',
                 description: 'Positieve competitie motiveert bewoners om te blijven spelen omdat ze hun eigen score willen verbeteren en die van medebewoners verslaan.',
                 options: [
                     { label: 'Ja, ze kunnen hun punten bijhouden', next: 'q7' },
@@ -242,7 +270,7 @@
                 options: [{ label: 'Check! Door naar stap 7', next: 'q7' }]
             },
 
-            // STAP 7: Feedback
+            // STAP 7
             q7: {
                 type: 'question',
                 tag: 'Stap 7/10: Spelfeedback',
@@ -250,7 +278,7 @@
                 description: 'Spelfeedback (licht, geluid, beweging) is een belangrijk onderdeel voor spelplezier. Zonder feedback voelt een spel dood aan.',
                 options: [
                     { label: 'Ja, het spel "reageert" goed', next: 'q8' },
-                    { label: 'Nee, je hoort of ziet niet echt dat je scoort of veel punten hebt', next: 'tip7' }
+                    { label: 'Nee, je hoort of ziet niet echt dat je scoort', next: 'tip7' }
                 ]
             },
             tip7: {
@@ -258,21 +286,21 @@
                 tag: 'Principe 7: Real-time Feedback',
                 title: 'Voeg licht, geluid of tactiele elementen toe',
                 description: 'Feedback is geen decoratie, het bestuurt de ervaring. Gebruik bellen, knallende kleuren of elektronica om een succesvolle actie te markeren en te vieren.',
-                criteria: 'Het voldoet als: Bewoners hebben direct door dat ze goed hebben gepresteerd.',
-                materials: 'Belletjes, ledlampjes of een klein speakertje.',
+                criteria: 'Het voldoet als: Bewoners direct na een actie doorhebben of ze goed hebben gepresteerd.',
+                materials: 'Belletjes, grote gekleurde vlakken of een klein speakertje.',
                 exampleText: 'Er is een simpele sensor in de bak gemaakt die ballen registreert. Via LED-strips en een speakertje krijgt de speler direct positieve licht- en geluidssignalen als beloning voor een goede worp.',
                 exampleImage: 'ledstrips.png',
                 options: [{ label: 'Check! Door naar stap 8', next: 'q8' }]
             },
 
-            // STAP 8: Sociale interactie
+            // STAP 8
             q8: {
                 type: 'question',
                 tag: 'Stap 8/10: Sociale Interactie',
                 title: 'Zorgt het spel automatisch voor interactie, zoals samenspel of toeschouwers?',
                 description: 'Samen spelen is een van de grootste drijfveren om mee te doen met een spel.',
                 options: [
-                    { label: 'Ja, mensen spelen het vaak samen of er zijn toeschouwers', next: 'q9' },
+                    { label: 'Ja, mensen spelen het vaak samen', next: 'q9' },
                     { label: 'Nee, het wordt vooral alleen gespeeld', next: 'tip8' }
                 ]
             },
@@ -284,18 +312,18 @@
                 criteria: 'Het voldoet als: Het spel aanleiding geeft tot gesprek of aanmoediging tussen bewoners.',
                 materials: 'Voldoende stoelen rondom het spel, speciale Duo-vakken op je whiteboard-leaderboard.',
                 exampleText: 'Japans Biljart is van nature een magneet voor toeschouwers. Om dit te versterken, is op het Leaderboard een apart "Duo-vak" gemaakt. Zo stimuleren we bewoners om gezamenlijk een hoge score neer te zetten.',
-                exampleImage: 'leaderboard.png', // Of een foto van bewoners samen
+                exampleImage: 'leaderboard.png',
                 options: [{ label: 'Check! Door naar stap 9', next: 'q9' }]
             },
 
-            // STAP 9: Uitnodigen (Triggers)
+            // STAP 9
             q9: {
                 type: 'question',
                 tag: 'Stap 9/10: Uitnodigingskracht',
                 title: 'Trekt het spel (terwijl het stilstaat) actief de aandacht van mensen in de kamer?',
                 description: 'Bewoners zijn gewend dat activiteiten worden aangekondigd. Als het spel stil in de hoek staat, vergeten ze dat ze het mogen spelen.',
                 options: [
-                    { label: 'Ja, het valt goed op', next: 'success' },
+                    { label: 'Ja, het valt goed op', next: 'q10' },
                     { label: 'Nee, het gaat op in het meubilair', next: 'tip9' }
                 ]
             },
@@ -304,14 +332,14 @@
                 tag: 'Principe 9: Triggers en Lokken',
                 title: 'Creëer een "Attract Mode"',
                 description: 'Voeg subtiele elementen toe die de aandacht trekken. Dit hoeft geen kermis te zijn; een simpel bord met "Kom spelen", een opvallende kleur of een zacht lampje herinnert ze eraan dat het er staat.',
-                criteria: 'Het voldoet als: Bewoners eens in de zoveel tijd een blik werpen op het spel',
-                materials: 'Kartonbord met "Kom spelen!", een tafelkleed in een contrastkleur of een batterij-lampje dat langzaam pulseert.',
+                criteria: 'Het voldoet als: Bewoners eens in de zoveel tijd uit zichzelf een blik werpen op het spel.',
+                materials: 'Kartonbord met "Kom spelen!", placemats in contrastkleur of een zacht pulserend lampje.',
                 exampleText: 'Als er langer dan 30 seconden niet met Japans Biljart+ gespeeld wordt, gaat de "Attract Mode" aan. De LED-strips vertonen dan een subtiele, golvende lichtanimatie die zachtjes de aandacht van de ruimte trekt.',
                 exampleImage: 'ledstrips.png',
                 options: [{ label: 'Check! Door naar de laatste stap', next: 'q10' }]
             },
 
-            // STAP 10 (De missende stap!)
+            // STAP 10
             q10: {
                 type: 'question',
                 tag: 'Stap 10/10: Maximale Reikafstand',
@@ -335,36 +363,32 @@
                 options: [{ label: 'Rond SpeelZelf+ af!', next: 'success' }]
             },
 
-            // EINDSTATION
+            // --- NIEUWE EIND PAGINA (Met Samenvatting) ---
             success: {
                 type: 'success',
                 tag: 'Gefeliciteerd!',
-                title: 'Je hebt een SpeelZelf+ spel gecreëerd!',
-                description: 'Je hebt alle 10 de principes nagelopen. Jouw spel is nu fysiek toegankelijk, cognitief helder en sociaal uitnodigend. Zet het op de groep en kijk wat er gebeurt!',
+                title: 'Je hebt een SpeelZelf+ spel ontworpen!',
+                description: 'Je hebt alle 10 de principes doorlopen. Hieronder vind je de samenvatting van jouw aantekeningen. Je kunt dit nu in de praktijk gaan brengen!',
+                showSummary: true, // Dit vertelt de code om de samenvatting te genereren
                 options: [
-                    { label: 'Begin met een nieuw spel', next: 'start', style: 'outline' }
+                    { label: 'Nieuw project starten (Wis Kladblok)', next: 'intro', action: 'clearNotes' },
+                    { label: 'Bewaar notities & ga naar start', next: 'intro', style: 'outline' }
                 ]
             }
         };
 
-        // ==========================================
-        // 3. DE RENDER ENGINE (Javascript logica)
-        // ==========================================
         const appCard = document.getElementById('app-card');
 
         function renderNode(nodeId, isBack = false) {
             const node = treeData[nodeId];
 
-            // Beheer de geschiedenis voor de terug-knop
-            if (!isBack && nodeId !== 'start') {
-                // Sla op waar we net waren
+            if (!isBack && nodeId !== 'intro') {
                 const currentTag = document.querySelector('[data-current-node]')?.getAttribute('data-current-node');
                 if (currentTag) historyStack.push(currentTag);
-            } else if (nodeId === 'start') {
-                historyStack = []; // Reset als we opnieuw beginnen
+            } else if (nodeId === 'intro') {
+                historyStack = [];
             }
 
-            // Animatie resetten
             appCard.innerHTML = '';
             appCard.classList.remove('fade-in');
             void appCard.offsetWidth;
@@ -373,88 +397,98 @@
 
             let html = '';
 
-            // --- DE TERUG KNOP ---
-            if (historyStack.length > 0) {
+            // Terug knop (Niet op de intro pagina of succes pagina)
+            if (historyStack.length > 0 && nodeId !== 'success') {
                 html += `
-                    <button onclick="goBack()" class="absolute top-6 left-6 text-brand-secondary hover:text-brand-accent flex items-center gap-1 font-semibold transition-colors">
-                        <span>←</span> Terug
-                    </button>
-                    <div class="mt-8"></div>`; // Extra ruimte bovenin
+                        <button onclick="goBack()" class="absolute top-6 left-6 text-brand-secondary hover:text-brand-accent flex items-center gap-1 font-semibold transition-colors">
+                            <span>←</span> Terug
+                        </button>
+                        <div class="mt-8"></div>`;
             }
 
-            // --- 1. TAGLINE ---
             if (node.tag) {
                 html += `<span class="inline-block bg-brand-lighter text-brand-primary font-bold px-4 py-1.5 rounded-full text-xs mb-5 uppercase tracking-widest">${node.tag}</span>`;
             }
 
-            // --- 2. TITEL ---
             html += `<h2 class="text-3xl md:text-4xl font-bold text-brand-darkest mb-5 leading-tight">${node.title}</h2>`;
 
-            // --- 3. BESCHRIJVING ---
             if (node.description) {
                 html += `<p class="text-brand-dark text-lg mb-6 leading-relaxed">${node.description}</p>`;
             }
 
-            // --- 4. EXTRA KADERS VOOR TIPS (Criteria & Materialen) ---
+            // Aangepaste HTML (Voor de Intro Input)
+            if (node.customHtml) {
+                html += node.customHtml;
+            }
+
+            // Kaders voor Tips
             if (node.type === 'tip') {
                 html += `<div class="flex flex-col md:flex-row gap-4 mb-6">`;
-
-                // Criteria box
                 if (node.criteria) {
                     html += `
-                        <div class="flex-1 bg-green-50 border border-green-200 p-4 rounded-xl">
-                            <span class="block text-green-700 font-bold text-sm uppercase mb-1">🎯 Wanneer voldoet het?</span>
-                            <p class="text-green-900 text-sm">${node.criteria}</p>
-                        </div>`;
+                            <div class="flex-1 bg-green-50 border border-green-200 p-4 rounded-xl">
+                                <span class="block text-green-700 font-bold text-sm uppercase mb-1">🎯 Wanneer voldoet het?</span>
+                                <p class="text-green-900 text-sm">${node.criteria}</p>
+                            </div>`;
                 }
-
-                // Materialen box
                 if (node.materials) {
                     html += `
-                        <div class="flex-1 bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
-                            <span class="block text-yellow-700 font-bold text-sm uppercase mb-1">🛒 Boodschappen tip</span>
-                            <p class="text-yellow-900 text-sm">${node.materials}</p>
-                        </div>`;
+                            <div class="flex-1 bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+                                <span class="block text-yellow-700 font-bold text-sm uppercase mb-1">🛒 Boodschappen tip</span>
+                                <p class="text-yellow-900 text-sm">${node.materials}</p>
+                            </div>`;
                 }
                 html += `</div>`;
             }
 
-            // --- 5. HET JAPANS BILJART VOORBEELD KADER ---
+            // Voorbeeld Kader
             if (node.exampleText) {
-                // Check of we 1 of 2 afbeeldingen moeten laden
                 let imagesHtml = '';
                 if (node.exampleImage && node.exampleImage2) {
                     imagesHtml = `
-                            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                                <img src="${node.exampleImage}" alt="Voorbeeld 1" class="w-full sm:w-1/2 h-auto max-h-[350px] object-contain rounded border border-brand-lighter shadow-sm">
-                                <img src="${node.exampleImage2}" alt="Voorbeeld 2" class="w-full sm:w-1/2 h-auto max-h-[350px] object-contain rounded border border-brand-lighter shadow-sm">
-                            </div>`;
+                                <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                                    <img src="${node.exampleImage}" alt="Voorbeeld 1" class="w-full sm:w-1/2 h-auto max-h-[350px] object-contain rounded border border-brand-lighter shadow-sm">
+                                    <img src="${node.exampleImage2}" alt="Voorbeeld 2" class="w-full sm:w-1/2 h-auto max-h-[350px] object-contain rounded border border-brand-lighter shadow-sm">
+                                </div>`;
                 } else if (node.exampleImage && node.exampleImage !== '') {
                     imagesHtml = `<img src="${node.exampleImage}" alt="Voorbeeld" class="w-full h-auto max-h-[400px] object-contain rounded border border-brand-lighter shadow-sm">`;
                 }
 
                 html += `
-                    <div class="bg-[#f0ece1] p-6 rounded-2xl mb-8 border-l-4 border-brand-accent shadow-sm">
-                        <h3 class="font-bold text-brand-primary text-xl mb-3 flex items-center gap-2">
-                            <span>💡</span> Voorbeeld uit de praktijk: Japans Biljart+
-                        </h3>
-                        <p class="text-brand-darkest mb-4 leading-relaxed">${node.exampleText}</p>
-                        ${imagesHtml ? `<div class="bg-white p-2 rounded-xl">${imagesHtml}</div>` : ''}
-                    </div>`;
+                        <div class="bg-[#f0ece1] p-6 rounded-2xl mb-8 border-l-4 border-brand-accent shadow-sm">
+                            <h3 class="font-bold text-brand-primary text-xl mb-3 flex items-center gap-2">
+                                <span>💡</span> Voorbeeld uit de praktijk: Japans Biljart+
+                            </h3>
+                            <p class="text-brand-darkest mb-4 leading-relaxed">${node.exampleText}</p>
+                            ${imagesHtml ? `<div class="bg-white p-2 rounded-xl">${imagesHtml}</div>` : ''}
+                        </div>`;
             }
 
-            // --- 6. DE KNOPPEN ---
+            // --- DE SAMENVATTING (Alleen op success pagina) ---
+            if (node.showSummary) {
+                const currentNotes = document.getElementById('notesArea').value;
+                html += `
+                        <div class="bg-brand-lighter p-6 rounded-xl mb-8 border border-brand-light">
+                            <h3 class="font-bold text-brand-darkest text-lg mb-2 flex items-center gap-2"><span>📋</span> Jouw SpeelZelf+ Ontwerp</h3>
+                            <pre class="whitespace-pre-wrap font-sans text-brand-dark leading-relaxed">${currentNotes}</pre>
+                        </div>`;
+            }
+
+            // Knoppen
             html += `<div class="flex flex-col sm:flex-row gap-4 mt-8">`;
             node.options.forEach(opt => {
                 const isOutline = opt.style === 'outline';
-                // Als het een outline knop is, maken we hem wit met gekleurde rand
                 const btnClass = isOutline
                     ? 'border-2 border-brand-primary text-brand-primary hover:bg-brand-lighter'
-                    // Anders is het de opvallende oranje hoofdknop
                     : 'bg-brand-accent text-white hover:bg-[#c26547] shadow-lg shadow-brand-accent/20';
 
-                html += `<button onclick="renderNode('${opt.next}')"
-                                class="px-6 py-4 rounded-xl font-bold transition-all duration-200 flex-1 text-center text-lg ${btnClass}">
+                // Als de knop het Kladblok moet wissen, voeg een bevestiging toe
+                let onclickCode = `renderNode('${opt.next}')`;
+                if (opt.action === 'clearNotes') {
+                    onclickCode = `if(confirm('Weet je zeker dat je het huidige kladblok wilt wissen?')) { clearNotes(); renderNode('${opt.next}'); }`;
+                }
+
+                html += `<button onclick="${onclickCode}" class="px-6 py-4 rounded-xl font-bold transition-all duration-200 flex-1 text-center text-lg ${btnClass}">
                                 ${opt.label}
                              </button>`;
             });
@@ -463,7 +497,6 @@
             appCard.innerHTML = html;
         }
 
-        // Functie voor de terug-knop
         function goBack() {
             if (historyStack.length > 0) {
                 const previousNode = historyStack.pop();
@@ -471,26 +504,19 @@
             }
         }
 
-        // ==========================================
-        // 4. NOTITIEBLOK (LocalStorage) Functies
-        // ==========================================
         const notesArea = document.getElementById('notesArea');
-
-        // Laad oude notities in als de app opstart
         if (localStorage.getItem('speelzelf_notes')) {
             notesArea.value = localStorage.getItem('speelzelf_notes');
         } else {
-            // Als het de eerste keer is, zet een handig sjabloon klaar
             notesArea.value = "Mijn SpeelZelf+ Project\n\nSpelnaam: \n\nAanpassingen:\n- \n- \n\nBoodschappenlijst:\n- \n- \n";
         }
 
-        // Sla direct op zodra de gebruiker typt
         notesArea.addEventListener('input', function () {
             localStorage.setItem('speelzelf_notes', this.value);
         });
 
-        // Start de applicatie!
-        renderNode('start');
+        // We starten nu netjes op de 'intro' pagina in plaats van 'start'!
+        renderNode('intro');
     </script>
 </body>
 </html>
