@@ -1,0 +1,20 @@
+SpeelZelf+ v10 – afbeeldingsbestanden waar de app naar verwijst
+
+- Instructieblad spellen.png
+- Vaste plek.png
+- Gespeeld spel.png
+- Rand om tafel.png
+- Zakjes ipv balletjes.png
+- Ballenstok.png
+- Mal voor spel reset.png
+- Kleurcodering.png
+- Spiekkaart.png
+- Lagere puntwaarden.png
+- Lijnen moeilijkheid.png
+- Licht materiaal.png
+- Geluid toevoegen.png
+- Licht.png
+- Duos.png
+- Twee kleuren.png
+- Beloning.png
+- Speel mee.png
