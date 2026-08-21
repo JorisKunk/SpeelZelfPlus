@@ -18,10 +18,10 @@ const principles = [
   {
     id: "bekend",
     number: 1,
-    title: "Gebruik een spel dat bewoners al kennen",
-    short: "Bewoners spelen liever spellen die ze al kennen en begrijpen. Ze zullen niet gauw een nieuw spel spelen als ze niet weten wat ze moeten doen.",
-    question: "Kennen bewoners het spel en begrijpen ze wat de bedoeling is?",
-    criterion: "Bewoners kennen het spel en begrijpen de basisregels zonder mondelinge begeleiding.",
+    title: "Bouw voort op een herkenbare spelvorm",
+    short: "Een spel hoeft niet letterlijk bekend te zijn, maar de spelvorm, handelingen en bedoeling moeten voldoende herkenbaar zijn om zonder veel uitleg te kunnen beginnen.",
+    question: "Herkennen bewoners de spelvorm of belangrijkste handelingen en begrijpen ze wat de bedoeling is?",
+    criterion: "Bewoners herkennen de belangrijkste spelhandelingen en begrijpen de basisregels met hooguit incidentele ondersteuning.",
     observeTip: "Laat bewoners eerst zelf vertellen of voordoen wat de bedoeling is. Vul pas aan als dat nodig is.",
     observationKey: "rules",
     solutions: [
@@ -35,6 +35,17 @@ const principles = [
         help: "Test met een bewoner of het instructieblad duidelijk is.",
         image: "Instructieblad spellen.png",
         imageAlt: "Voorbeeld van een A3-instructieblad met duidelijke stappen voor een beweegspel"
+      },
+      {
+        id: "behoud-kernhandeling",
+        title: "Behoud de herkenbare kernhandeling",
+        summary: "Verander zo min mogelijk aan de handeling die bewoners al begrijpen, bijvoorbeeld rollen, werpen of schuiven. Pas vooral de ondersteuning eromheen aan.",
+        materials: ["het bestaande spel", "eventueel tape of losse hulpmiddelen voor een tijdelijke test"],
+        source: "Gebruik eerst het bestaande materiaal. Voeg alleen iets toe wanneer een concrete drempel daarom vraagt.",
+        how: "1. Benoem wat de centrale spelhandeling is, bijvoorbeeld een bal rollen of een ring werpen. 2. Laat bewoners deze handeling uitvoeren met het oorspronkelijke spel. 3. Houd deze handeling en de basisregels zoveel mogelijk gelijk. 4. Pas eerst onderdelen eromheen aan, zoals bereikbaarheid, score, uitleg of het terughalen van materiaal. 5. Controleer met bewoners of het spel nog herkenbaar aanvoelt.",
+        help: "Laat bewoners aangeven welke onderdelen voor hen bij het spel horen en welke aanpassingen de herkenbaarheid juist zouden verstoren.",
+        image: "",
+        imageAlt: ""
       }
     ]
   },
@@ -165,10 +176,10 @@ const principles = [
   {
     id: "score",
     number: 5,
-    title: "Zorg dat bewoners hun score goed kunnen zien en bijhouden",
-    short: "Duidelijke puntwaarden en een eenvoudige telling voorkomen dat bewoners tijdens het spel hulp nodig hebben om hun score te bepalen.",
-    question: "Kunnen bewoners de puntwaarden goed zien en hun score zelf tellen en bijhouden?",
-    criterion: "Bewoners kunnen de puntwaarden goed zien en hun score zonder hulp tellen en bijhouden.",
+    title: "Maak score en spelverloop begrijpelijk",
+    short: "Maak duidelijk hoe een beurt verloopt, wat de puntwaarden betekenen en hoe bewoners de score kunnen volgen zonder dat een medewerker dit steeds hoeft over te nemen.",
+    question: "Kunnen bewoners het spelverloop volgen, de puntwaarden goed zien en hun score zelf bijhouden?",
+    criterion: "Bewoners kunnen het spelverloop volgen, de puntwaarden waarnemen en hun score met hooguit incidentele ondersteuning bijhouden.",
     observeTip: "Let niet alleen op het optellen. Kijk ook naar kleine cijfers, weinig contrast, cijfers die door spelmateriaal worden afgedekt en het onthouden van tussenscores.",
     observationKey: "score",
     solutions: [
@@ -204,6 +215,17 @@ const principles = [
         help: "Bespreek met bewoners welke puntentelling duidelijk en leuk blijft.",
         image: "Lagere puntwaarden.png",
         imageAlt: "Voor en na van een spel met vereenvoudigde, lagere puntwaarden"
+      },
+      {
+        id: "stappenkaart-spelverloop",
+        title: "Maak de volgorde van een beurt zichtbaar",
+        summary: "Een korte stappenkaart helpt wanneer bewoners wel begrijpen wat de spelhandeling is, maar niet goed weten wat daarna komt.",
+        materials: ["A4- of A3-papier", "grote letters", "foto's of eenvoudige pictogrammen", "eventueel lamineerhoes"],
+        source: "Gebruik een printer op locatie en eenvoudige materialen die al aanwezig zijn of bijvoorbeeld bij Action verkrijgbaar zijn.",
+        how: "1. Kijk tijdens een beurt bij welke overgang bewoners om hulp vragen, bijvoorbeeld na het gooien, tellen of terughalen van materiaal. 2. Schrijf alleen die opeenvolgende stappen op die nodig zijn om zelfstandig door te gaan. 3. Gebruik korte werkwoorden, bijvoorbeeld: spelen, tellen, opschrijven, terughalen. 4. Zet bij iedere stap een foto of eenvoudig beeld. 5. Plaats de kaart binnen het gezichtsveld en test of bewoners de volgende stap ermee kunnen vinden.",
+        help: "Laat een bewoner de stappenkaart doorlopen zonder dat je de volgorde mondeling voorzegt.",
+        image: "",
+        imageAlt: ""
       }
     ]
   },
@@ -244,11 +266,11 @@ const principles = [
   {
     id: "feedback",
     number: 7,
-    title: "Maak direct duidelijk wat een poging oplevert",
-    short: "Bewoners moeten zonder uitleg kunnen zien of horen wat er na hun worp, rol of andere poging gebeurt. Voeg alleen extra feedback toe als het resultaat anders niet duidelijk genoeg is.",
-    question: "Is voor bewoners direct duidelijk wat een poging oplevert?",
-    criterion: "Bewoners merken direct wat een poging oplevert, zonder dat iemand dit hoeft te vertellen.",
-    observeTip: "Kijk of bewoners na een poging zelf op het resultaat reageren. Voeg alleen feedback toe als het resultaat niet duidelijk genoeg is.",
+    title: "Maak duidelijk wat er na een poging gebeurt",
+    short: "Kijk eerst welke informatie ontbreekt: moet duidelijk worden dat een handeling is uitgevoerd, wat het resultaat is, of hoeveel punten dat oplevert? Voeg alleen extra feedback toe als bewoners dit anders niet goed kunnen waarnemen.",
+    question: "Is voor bewoners duidelijk dat een poging is uitgevoerd en wat het directe resultaat daarvan is?",
+    criterion: "Bewoners kunnen waarnemen dat een spelhandeling is uitgevoerd en begrijpen het directe resultaat daarvan, zonder continue uitleg van een medewerker.",
+    observeTip: "Kijk afzonderlijk naar drie dingen: merken bewoners dat de handeling is uitgevoerd, begrijpen zij het resultaat, en kunnen zij de eventuele score bepalen? Voeg alleen feedback toe waar informatie ontbreekt.",
     observationKey: "feedback",
     solutions: [
       {
@@ -278,8 +300,8 @@ const principles = [
   {
     id: "sociaal",
     number: 8,
-    title: "Stimuleer samen spelen, meekijken en aanmoedigen",
-    short: "Sociale interactie vergroot betrokkenheid. Maak het gemakkelijk om samen te spelen, mee te kijken en elkaar aan te moedigen.",
+    title: "Maak samen spelen, meekijken en aanmoedigen mogelijk",
+    short: "Maak ruimte voor samen spelen, meekijken, tips geven en aanmoedigen, zonder dat samenspelen verplicht wordt.",
     question: "Nodigt het spel uit om samen te spelen, mee te kijken of elkaar aan te moedigen?",
     criterion: "Het spel maakt samen spelen, meekijken en elkaar aanmoedigen gemakkelijk.",
     observeTip: "Kijk of andere bewoners aansluiten, reageren of op hun beurt wachten wanneer iemand speelt.",
@@ -342,26 +364,26 @@ const principles = [
         imageAlt: "Scorebord met naam, score en datum"
       },
       {
-        id: "prijs-of-keuze",
-        title: "Koppel een kleine beloning of keuze aan deelname of prestatie",
-        summary: "Positieve erkenning of een kleine keuze kan extra motiveren, zonder dat alleen de hoogste score telt.",
-        materials: ["foto of geprint kaartje", "scorebord of weekkaart", "eventueel een kleine traktatie die past binnen voedings- en zorgafspraken"],
-        source: "Maak een kaartje of weekbord zelf en stem de gekozen beloning af op het activiteitenbeleid en de afspraken van de afdeling.",
-        how: "1. Kies vooraf waarvoor iemand erkenning of een kleine beloning kan krijgen, bijvoorbeeld een persoonlijk record, meest gespeeld, hoogste score of team van de week. 2. Kies iets kleins dat bij de afdeling past, bijvoorbeeld een foto op het bord als 'speler van de week', de volgende activiteit kiezen, muziek kiezen tijdens een gezamenlijk moment of een kleine traktatie binnen de geldende afspraken. 3. Schrijf duidelijk op wanneer een nieuwe speler of een nieuw team van de week wordt gekozen. 4. Wissel de categorie af zodat verschillende bewoners kans maken. 5. Houd de beloning ondersteunend aan het spelplezier en niet als verplichting om mee te doen.",
-        help: "Stem de vorm van beloning of erkenning af met het welzijnsteam.",
-        image: "assets/images/Beloning.png",
-        imageAlt: "Kaartje voor speler van de week als positieve erkenning"
+        id: "persoonlijk-record",
+        title: "Maak persoonlijke vooruitgang zichtbaar",
+        summary: "Laat bewoners een eigen eerdere score proberen te verbeteren, zodat competitie niet alleen draait om winnen van anderen.",
+        materials: ["klein whiteboard of gelamineerd scoreblad", "whiteboardstift", "eventueel kolom voor persoonlijke beste score"],
+        source: "Whiteboards en whiteboardstiften zijn bijvoorbeeld verkrijgbaar bij Action. Een eenvoudig scoreblad kan op locatie worden geprint en gelamineerd.",
+        how: "1. Maak op het scorebord ruimte voor naam en beste score. 2. Schrijf een nieuwe score alleen over als iemand zichzelf verbetert, of noteer meerdere pogingen wanneer bewoners dat leuk vinden. 3. Gebruik grote, goed leesbare cijfers. 4. Laat bewoners zelf kiezen of zij hun score met anderen willen vergelijken. 5. Houd de nadruk op opnieuw proberen en plezier in plaats van alleen op de hoogste score.",
+        help: "Een collega of medebewoner kan helpen bij het noteren als schrijven lastig is, zonder de scoreberekening automatisch over te nemen.",
+        image: "Duos.png",
+        imageAlt: "Scorebord waarop een bewoner een persoonlijke beste score kan bijhouden"
       }
     ]
   },
   {
     id: "aantrekken",
     number: 10,
-    title: "Maak het spel zichtbaar en uitnodigend",
-    short: "Zorg dat bewoners het spel gemakkelijk opmerken en kunnen zien dat het klaarstaat om gespeeld te worden.",
-    question: "Is voor bewoners duidelijk dat ze het spel zelf kunnen spelen wanneer het klaarstaat?",
-    criterion: "Bewoners zien dat het spel klaarstaat en begrijpen dat ze zelf kunnen beginnen.",
-    observeTip: "Laat het spel een periode zichtbaar klaarstaan en kijk of bewoners het opmerken, erover praten of uit zichzelf beginnen.",
+    title: "Laat het spel opvallen en passen in de dagelijkse omgeving",
+    short: "Zorg dat bewoners het spel kunnen opmerken en begrijpen dat zij mogen beginnen, op een plek en in een opstelling die past bij het dagelijks gebruik van de ruimte.",
+    question: "Merken bewoners het spel op, begrijpen ze dat ze zelf mogen beginnen en blijft de opstelling bruikbaar in de dagelijkse omgeving?",
+    criterion: "Het spel is zichtbaar en uitnodigend, bewoners begrijpen dat zij zelf mogen beginnen en de opstelling past in de dagelijkse leefomgeving.",
+    observeTip: "Laat het spel op meerdere gewone momenten zichtbaar en startklaar staan. Kijk of bewoners het opmerken of zelf beginnen en noteer ook of de plek, stroomvoorziening of andere dagelijkse routines het gebruik beïnvloeden.",
     observationKey: "trigger",
     solutions: [
       {
@@ -387,6 +409,17 @@ const principles = [
         imageAlt: "Spel dat zichtbaar en startklaar in de gezamenlijke ruimte staat"
       },
       {
+        id: "dagelijkse-plek",
+        title: "Kies een plek die in het dagelijks gebruik beschikbaar kan blijven",
+        summary: "Een spel kan alleen zelfstandig gebruikt worden als de plek niet voortdurend voor iets anders nodig is en de opstelling in de dagelijkse routine kan blijven functioneren.",
+        materials: ["bestaande tafel of vaste plek", "eventueel markering voor de opstelling", "indien nodig een eenvoudige stroomvoorziening zonder losse kabels"],
+        source: "Gebruik bij voorkeur een bestaande plek en materialen op de afdeling. Stem praktische aanpassingen af met collega's of de facilitaire dienst.",
+        how: "1. Kies een plek die bewoners regelmatig zien. 2. Kijk gedurende meerdere gewone momenten of de plek nodig is voor eten, koffie, zorg of andere activiteiten. 3. Controleer of loop- en rijroutes vrij blijven. 4. Controleer of materialen, kabels of hulpmiddelen op hun plek blijven wanneer niemand het spel begeleidt. 5. Pas de plek of opstelling aan als het spel regelmatig moet worden verplaatst of opgeborgen. 6. Laat het spel daarna opnieuw een aantal momenten beschikbaar staan en kijk wat er gebeurt.",
+        help: "Bespreek met collega's welke plekken en momenten in de gezamenlijke ruimte werkelijk beschikbaar zijn.",
+        image: "Vaste plek.png",
+        imageAlt: "Beweegspel op een plek die past binnen het dagelijkse gebruik van de gezamenlijke ruimte"
+      },
+      {
         id: "subtiele-trigger",
         title: "Voeg een rustige aandachtstrekker toe",
         summary: "Een rustig lampje, herkenbare muziek of een klein bewegend element kan helpen om het spel op te laten vallen.",
@@ -402,16 +435,16 @@ const principles = [
 ];
 
 const observationItems = [
-  { key: "rules", question: "Begrijpen bewoners hoe het spel werkt en wat de basisregels zijn?" },
-  { key: "start", question: "Kunnen bewoners beginnen met spelen zonder dat een medewerker het spel eerst hoeft klaar te zetten?" },
-  { key: "reach", question: "Kunnen bewoners vanuit hun rolstoel overal goed bij?" },
-  { key: "reset", question: "Kunnen bewoners na een beurt de materialen zelf verzamelen en het spel klaarmaken voor de volgende beurt?" },
-  { key: "score", question: "Kunnen bewoners de puntwaarden goed zien en hun score zelf bijhouden?" },
+  { key: "rules", question: "Herkennen bewoners de spelvorm of belangrijkste handelingen en begrijpen ze de bedoeling?" },
+  { key: "start", question: "Kunnen bewoners beginnen zonder dat een medewerker het spel eerst hoeft klaar te zetten?" },
+  { key: "reach", question: "Kunnen bewoners de noodzakelijke handelingen comfortabel en veilig uitvoeren vanuit hun eigen positie?" },
+  { key: "reset", question: "Kunnen bewoners na een beurt de materialen verzamelen en het spel klaarmaken voor de volgende beurt?" },
+  { key: "score", question: "Kunnen bewoners het spelverloop volgen, de puntwaarden zien en hun score bijhouden?" },
   { key: "success", question: "Past de moeilijkheid bij de bewoners: lukt het regelmatig zonder dat het te makkelijk wordt?" },
-  { key: "feedback", question: "Is voor bewoners direct duidelijk wat een poging oplevert?" },
-  { key: "social", question: "Nodigt het spel uit om samen te spelen, mee te kijken of elkaar aan te moedigen?" },
-  { key: "competition", question: "Proberen bewoners hun eigen score of die van een ander te verbeteren?" },
-  { key: "trigger", question: "Is voor bewoners duidelijk dat ze het spel zelf kunnen spelen wanneer het klaarstaat?" }
+  { key: "feedback", question: "Is duidelijk dat een poging is uitgevoerd en wat het directe resultaat daarvan is?" },
+  { key: "social", question: "Maakt het spel samen spelen, meekijken en aanmoedigen mogelijk?" },
+  { key: "competition", question: "Willen bewoners hun eigen score of die van een ander proberen te verbeteren?" },
+  { key: "trigger", question: "Merken bewoners het spel op, begrijpen ze dat zij mogen beginnen en past de opstelling in het dagelijks gebruik van de ruimte?" }
 ];
 
 const helperOptions = [
@@ -425,7 +458,7 @@ const helperOptions = [
   { id: "bewegen", label: "Bewegingsagoog / fysiotherapeut" }
 ];
 
-const STORAGE_KEY = "speelzelfplus-state-v3";
+const STORAGE_KEY = "speelzelfplus-state-final-v1";
 
 const defaultState = {
   screen: "start",
@@ -537,7 +570,7 @@ function renderStart() {
       </div>
 
       <h1 class="hero-title">Maak een bestaand beweegspel<br><span class="title-accent">zelfstandig speelbaar</span>.</h1>
-      <p class="lead">SpeelZelf+ helpt je stap voor stap om een bestaand beweegspel aan te passen, zodat bewoners het ook zonder begeleiding kunnen spelen.</p>
+      <p class="lead">SpeelZelf+ helpt je stap voor stap om een bestaand beweegspel aan te passen, zodat bewoners het zonder continue begeleiding van een medewerker kunnen starten en spelen.</p>
 
       <div class="hero-card">
         <div class="hero-card__accent" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -602,7 +635,7 @@ function renderObservation() {
     <section class="content-card content-card--stage observation-stage">
       <div class="stage-chip">Eerste test</div>
       <h1 class="stage-title">Eerst observeren</h1>
-      <p class="stage-lead">Laat bewoners ${escapeHtml(state.gameName)} proberen zoals het nu is, zonder tijdens het spelen automatisch te helpen.</p>
+      <p class="stage-lead">Laat bewoners ${escapeHtml(state.gameName)} proberen zoals het nu is. Geef niet automatisch hulp, maar grijp uiteraard wel in wanneer dat nodig is voor veiligheid of welzijn.</p>
       <p class="section-intro">Beantwoord wat je kunt zien. Kies <strong>Niet getest</strong> als iets tijdens deze eerste poging nog niet duidelijk wordt.</p>
 
       <div class="observation-list">${rows}</div>
@@ -658,6 +691,7 @@ function getPrincipleState(id) {
     state.principleAnswers[id] = {
       selectedSolutions: [],
       noChange: false,
+      defer: false,
       helpers: {},
       helperNotes: {},
       customEnabled: false,
@@ -680,6 +714,7 @@ function getPrincipleState(id) {
   answer.helperNotes ||= {};
   answer.customHelpers ||= [];
   answer.noChange = Boolean(answer.noChange);
+  answer.defer = Boolean(answer.defer);
   return answer;
 }
 
@@ -730,6 +765,14 @@ function renderPrinciple() {
         </span>
       </label>
 
+      <label class="no-change-option">
+        <input id="deferDecision" type="checkbox" ${answer.defer ? "checked" : ""}>
+        <span>
+          <strong>Nog beoordelen met bewoners</strong>
+          <small>Kies dit als je eerst nog wilt observeren voordat je een aanpassing kiest.</small>
+        </span>
+      </label>
+
       <div class="bottom-action">
         <button class="primary-button" id="nextButton" type="button">
           ${state.principleIndex === principles.length - 1 ? "Maak het SpeelZelf+ plan" : "Volgend ontwerpdoel"}
@@ -758,6 +801,9 @@ function renderPrinciple() {
     answer.noChange = event.target.checked;
 
     if (answer.noChange) {
+      answer.defer = false;
+      const deferDecision = document.getElementById("deferDecision");
+      if (deferDecision) deferDecision.checked = false;
       answer.selectedSolutions = [];
       answer.customEnabled = false;
       answer.customSolution = "";
@@ -797,6 +843,23 @@ function renderPrinciple() {
       if (customNote) customNote.value = "";
     }
 
+    saveState();
+    syncNextButton(answer);
+  });
+
+  document.getElementById("deferDecision").addEventListener("change", event => {
+    answer.defer = event.target.checked;
+    if (answer.defer) {
+      answer.noChange = false;
+      const noChange = document.getElementById("noChange");
+      if (noChange) noChange.checked = false;
+      answer.selectedSolutions = [];
+      answer.customEnabled = false;
+      answer.customSolution = "";
+      document.querySelectorAll('input[data-solution-id]').forEach(input => { input.checked = false; input.closest(".solution-card")?.classList.remove("is-selected"); });
+      const customToggle = document.getElementById("customSolutionToggle");
+      if (customToggle) customToggle.checked = false;
+    }
     saveState();
     syncNextButton(answer);
   });
@@ -943,6 +1006,9 @@ function bindSolutionControls(p, answer) {
       if (input.checked) {
         if (!answer.selectedSolutions.includes(id)) answer.selectedSolutions.push(id);
         answer.noChange = false;
+        answer.defer = false;
+        const deferDecision = document.getElementById("deferDecision");
+        if (deferDecision) deferDecision.checked = false;
         const noChange = document.getElementById("noChange");
         if (noChange) noChange.checked = false;
       } else {
@@ -979,6 +1045,9 @@ function bindSolutionControls(p, answer) {
 
       if (customToggle.checked) {
         answer.noChange = false;
+        answer.defer = false;
+        const deferDecision = document.getElementById("deferDecision");
+        if (deferDecision) deferDecision.checked = false;
         const noChange = document.getElementById("noChange");
         if (noChange) noChange.checked = false;
       }
@@ -1020,6 +1089,9 @@ function bindSolutionControls(p, answer) {
       answer.customSolution = event.target.value;
       if (event.target.value.trim()) {
         answer.noChange = false;
+        answer.defer = false;
+        const deferDecision = document.getElementById("deferDecision");
+        if (deferDecision) deferDecision.checked = false;
         const noChange = document.getElementById("noChange");
         if (noChange) noChange.checked = false;
       }
@@ -1054,7 +1126,7 @@ function bindSolutionControls(p, answer) {
 }
 
 function canContinuePrinciple(answer) {
-  return Boolean(answer.noChange || answer.selectedSolutions.length || (answer.customEnabled && answer.customSolution.trim()));
+  return Boolean(answer.noChange || answer.defer || answer.selectedSolutions.length || (answer.customEnabled && answer.customSolution.trim()));
 }
 
 function syncNextButton(answer) {
@@ -1162,8 +1234,13 @@ function chosenPlanItems() {
   return items;
 }
 
+function deferredPrinciples() {
+  return principles.filter(principle => getPrincipleState(principle.id).defer);
+}
+
 function renderPlan() {
   const items = chosenPlanItems();
+  const deferred = deferredPrinciples();
 
   app.innerHTML = `
     ${topBackMarkup("Aanpassingen wijzigen")}
@@ -1184,21 +1261,38 @@ function renderPlan() {
 
       ${items.length ? materialOverviewMarkup(items) : ""}
 
+      ${deferred.length ? `
+        <section class="plan-section">
+          <h2>Nog beoordelen met bewoners</h2>
+          <p>Voor deze ontwerpdoelen is nog geen keuze gemaakt. Bekijk ze eerst opnieuw tijdens het spelen voordat je een oplossing vastlegt.</p>
+          <ul>
+            ${deferred.map(principle => `<li><strong>${escapeHtml(principle.title)}</strong> — ${escapeHtml(principle.observeTip)}</li>`).join("")}
+          </ul>
+        </section>` : ""}
+
       <section class="plan-section test-section">
         <div class="test-section__intro">
           <h2>Na uitvoering: test het aangepaste spel opnieuw</h2>
-          <p>Laat bewoners opnieuw spelen zonder automatisch te helpen. Ga aan de hand van de punten hieronder na of de aanpassingen werken.</p>
+          <p><strong>1. Directe speelsessie.</strong> Laat bewoners opnieuw spelen zonder automatisch hulp over te nemen. Geef alleen incidentele ondersteuning wanneer dat nodig is en ga aan de hand van de punten hieronder na wat nu zelfstandig lukt.</p>
         </div>
 
         <div class="test-grid">
           ${principles.map(testCriterionMarkup).join("")}
         </div>
+
+        <div class="test-section__intro daily-practice-intro">
+          <h2>2. Probeer het daarna in de dagelijkse omgeving</h2>
+          <p>Laat het spel op meerdere gewone momenten zichtbaar en startklaar staan. Kijk niet alleen of bewoners <em>kunnen</em> spelen, maar ook of zij zelf tot spelen komen en of de opstelling in de dagelijkse praktijk bruikbaar blijft.</p>
+        </div>
+        <div class="test-grid">
+          ${dailyPracticeTestMarkup()}
+        </div>
       </section>
 
       <div class="plan-export no-print">
         <div>
-          <h2>Bewaar het plan als PDF</h2>
-          <p>De printweergave bevat de gekozen aanpassingen, materialen, illustraties en testvakjes.</p>
+          <h2>Bewaar of deel het plan</h2>
+          <p>De printweergave bevat de gekozen aanpassingen, materialen, illustraties, open aandachtspunten en testvakjes.</p>
         </div>
         <button class="primary-button primary-button--accent" id="printPlan" type="button">
           Afdrukken / opslaan als PDF
@@ -1289,6 +1383,26 @@ function materialOverviewMarkup(items) {
           </div>`).join("")}
       </div>
     </section>`;
+}
+
+function dailyPracticeTestMarkup() {
+  const items = [
+    ["Opmerken en initiatief", "Bewoners merken het spel op of beginnen er zelf over, zonder dat een medewerker het gebruik steeds initieert."],
+    ["Startklaar blijven", "Spel en materialen blijven beschikbaar en op hun plek wanneer er geen activiteit wordt begeleid."],
+    ["Passen in de ruimte", "De opstelling belemmert geen loop-, rij- of zorgroutes en hoeft niet voortdurend voor andere dagelijkse activiteiten te worden weggehaald."],
+    ["Ondersteuning in de praktijk", "Noteer welke incidentele hulp nog nodig is en of medebewoners elkaar spontaan ondersteunen."],
+    ["Onverwachte omstandigheden", "Noteer praktische factoren die het gebruik beïnvloeden, bijvoorbeeld licht, geluid, stroomvoorziening, verplaatsen van materiaal of een andere activiteit in dezelfde ruimte."]
+  ];
+  return items.map(([title, text]) => `
+    <div class="test-card">
+      <h3>${escapeHtml(title)}</h3>
+      <p>${escapeHtml(text)}</p>
+      <div class="paper-checks" aria-label="In de dagelijkse omgeving invullen">
+        <span>□ Werkt goed</span>
+        <span>□ Nog aanpassen</span>
+        <span>□ Niet waargenomen</span>
+      </div>
+    </div>`).join("");
 }
 
 function testCriterionMarkup(principle) {
