@@ -371,7 +371,7 @@ const principles = [
         source: "Whiteboards en whiteboardstiften zijn bijvoorbeeld verkrijgbaar bij Action. Een eenvoudig scoreblad kan op locatie worden geprint en gelamineerd.",
         how: "1. Maak op het scorebord ruimte voor naam en beste score. 2. Schrijf een nieuwe score alleen over als iemand zichzelf verbetert, of noteer meerdere pogingen wanneer bewoners dat leuk vinden. 3. Gebruik grote, goed leesbare cijfers. 4. Laat bewoners zelf kiezen of zij hun score met anderen willen vergelijken. 5. Houd de nadruk op opnieuw proberen en plezier in plaats van alleen op de hoogste score.",
         help: "Een collega of medebewoner kan helpen bij het noteren als schrijven lastig is, zonder de scoreberekening automatisch over te nemen.",
-        image: "Duos.png",
+        image: "Beloning.png",
         imageAlt: "Scorebord waarop een bewoner een persoonlijke beste score kan bijhouden"
       }
     ]
